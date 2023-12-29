@@ -53,7 +53,7 @@ function SearchResult() {
       <div className="result-container">
         <div className="left-panel">
           <div className="panel-header">Left Panel Title</div>
-          graph
+          test
         </div>
 
         <div className="right-panel">
