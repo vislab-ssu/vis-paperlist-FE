@@ -1,0 +1,34 @@
+.center-fixed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.paperContent-container {
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.input-text {
+  width: 500px;
+  height: 200px;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.readingGlasses-anim {
+  width: 500px;
+  height: 300px;
+  margin-left: 20px;
+}

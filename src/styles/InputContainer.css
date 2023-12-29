@@ -1,0 +1,36 @@
+.input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em; /* space between input and button */
+  margin-bottom: 1em;
+  justify-content: center;
+}
+
+.inputName {
+  padding: 0.6em 1em;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  width: 570px;
+  margin-right: 3px;
+}
+
+.search-type {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+  width: 110px;
+}
+
+.search-button {
+  padding: 0.6em 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(0, 0, 0);
+  transition: background-color 0.2s ease-in-out;
+}
