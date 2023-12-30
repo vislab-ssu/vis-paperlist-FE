@@ -15,8 +15,8 @@ function Home() {
   const goResult = () => {
     navigate("/searchResult", {
       state: {
-        searchType: searchType,
         searchName: name,
+        searchType: searchType,
       },
     });
   };

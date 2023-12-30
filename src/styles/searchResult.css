@@ -1,103 +1,108 @@
 .search-result-page {
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   background-color: #f5f5f5; /*white smoke*/
   min-height: 100vh; /*요소의 최소 높이 지원*/
-  padding: 1em;
+  /* padding: 1em; */
 }
 
 .header-container {
-  flex-direction: column;
+  height: 6vh;
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  background-color: #718096;
+  color: #e2e8f0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .logo-container {
-  margin: 0;
-  padding: 0;
+  margin-right: 1em;
 }
 
-/* .logo-under-container {
-  margin: 0;
-  padding: 0;
+.header-search-title {
+  font-weight: medium;
+  font-size: 20px;
 }
-
-.logo-under-text {
-  font-size: 15px;
-  color: rgb(135, 135, 135);
-} */
 
 .result-container {
   display: grid;
   grid-template-columns: 1fr 1fr; /* 두 열로 구성 */
   gap: 20px; /* 열 사이 간격 */
-  padding: 20px;
+  padding: 5px 5px 5px;
+  height: 87vh;
+  /* overflow: auto; */
 }
 
 .left-panel,
 .right-panel {
-  background: #ffffff; /* 배경색 */
-  border: 1px solid #ddd; /* 테두리 */
+  background: #ffffff;
+  border: 1px solid #e2e8f0; /* 테두리 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
-  border-radius: 4px; /* 모서리 둥글게 */
-  padding: 20px; /* 내부 패딩 */
+  border-radius: 8px;
+  padding: 0.8em;
   overflow: hidden; /* 내부 내용이 넘치면 숨김 */
 }
 
 .panel-header {
-  background: #f2f2f2; /* 헤더 배경색 */
-  color: #333; /* 헤더 텍스트 색상 */
-  padding: 10px 15px; /* 내부 패딩 */
+  font-weight: bold;
+  background: #e2e8f0;
+  color: #2d3748;
+  padding: 5px 10px;
+  margin-bottom: 1em;
   border-bottom: 1px solid #ddd; /* 하단 경계선 */
-  text-align: left; /* 텍스트 왼쪽 정렬 */
-  border-top-left-radius: 4px; /* 상단 왼쪽 모서리 둥글게 */
-  border-top-right-radius: 4px; /* 상단 오른쪽 모서리 둥글게 */
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 상단에 그림자 효과 */
 }
 
 .search-result-container {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: center; */
+  justify-content: flex-start; /* 상단 정렬 */
+  height: 100%;
+  overflow-y: auto; /* 세로 스크롤 활성화 */
 }
 
 /* 검색 결과 아이템 스타일 */
 .search-result {
-  border: 1px solid #ddd;
-  padding: 20px;
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #e2e8f0;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  padding: 0.5em;
+  margin-bottom: 0.7em;
 }
 
 /* 검색 결과 아이템 hover 시 스타일 변경 */
 .search-result:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* 검색 결과 제목 스타일 */
-.search-result h2 {
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 10px;
+.search-result:last-child {
+  margin-bottom: 3em; /* 마지막 아이템에 대한 하단 마진 추가 */
 }
 
-/* 저자 정보 스타일 */
-.authors {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 5px;
+.paper {
+  display: flex;
+  flex-direction: column;
 }
 
-/* 초록 정보 스타일 */
-.abstract {
-  font-size: 18px;
-  color: #444;
+.paper-title {
+  color: #2b6cb0;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.paper-detail {
+  font-size: 13px;
+  color: #8c9296;
 }
 
 .no-results-message {
@@ -106,16 +111,35 @@
   margin-top: 20px;
 }
 
-.footer {
+.footer-container {
+  height: 4vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #718096;
+  margin: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .footer-text {
-  font-size: 13px;
-  color: rgb(135, 135, 135);
+  font-size: 14px;
+  color: #e2e8f0;
+  /* color: rgb(135, 135, 135); */
 }
+
+/* 반응형 조정을 위한 미디어 쿼리 */
+/* @media (max-width: 768px) {
+  .header-container {
+    height: 15vh;
+  }
+
+  .footer-container {
+    height: 15vh;
+  }
+
+  .result-container {
+    height: 70vh;
+  }
+} */
