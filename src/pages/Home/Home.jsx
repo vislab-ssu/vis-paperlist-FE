@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import "../styles/Home.css";
-import BasicComponent from "../components/basicComponent";
-import ButtonContent from "../components/mainButton";
-import InputContainer from "../components/InputContainer"; //검색 부분 컴포넌트로 뺌
-//import LandingHome from "../components/landingHome";
+import "../Home/Home.css";
+import InputContainer from "./InputContainer";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/Vis_logo.png";
 
 //메인 홈 페이지
 function Home() {
@@ -29,8 +27,13 @@ function Home() {
 
   return (
     <div className="search-app">
-      <div className="center-fixed-container">
-        <BasicComponent />
+      <div className="title-container">
+        <p className="title-text">Paperlist</p>
+        <div className="logo-container">
+          <img src={logo} alt="image" className="logo" />
+        </div>
+      </div>
+      <div className="Home-search-container">
         <InputContainer
           name={name}
           setName={setName}
@@ -40,8 +43,8 @@ function Home() {
           activeEnter={activeEnter}
         />
       </div>
-      <div className="footer-container">
-        <p className="footer-text">ⓒ VisPaperlist. All rights reserved.</p>
+      <div className="home-footer-container">
+        <p className="home-footer-text">ⓒ VisPaperlist. All rights reserved.</p>
       </div>
     </div>
   );
