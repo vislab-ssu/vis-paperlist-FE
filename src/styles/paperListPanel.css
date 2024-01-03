@@ -80,6 +80,10 @@
   color: #8c9296;
 }
 
+.paper-scrap {
+  margin-top: 0.5em;
+}
+
 .no-results-message {
   font-size: 20px;
   color: #ff0000;
