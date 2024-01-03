@@ -49,66 +49,11 @@
   background: #e2e8f0;
   color: #2d3748;
   padding: 5px 10px;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   border-bottom: 1px solid #ddd; /* 하단 경계선 */
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 상단에 그림자 효과 */
-}
-
-.search-result-container {
-  /* align-items: center;
-  justify-content: center;
-  text-align: center; */
-  justify-content: flex-start; /* 상단 정렬 */
-  height: 100%;
-  overflow-y: auto; /* 세로 스크롤 활성화 */
-}
-
-/* 검색 결과 아이템 스타일 */
-.search-result {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid #e2e8f0;
-  background-color: #fff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  padding: 0.5em;
-  margin-bottom: 0.7em;
-}
-
-/* 검색 결과 아이템 hover 시 스타일 변경 */
-.search-result:hover {
-  transform: translateY(-3px);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.search-result:last-child {
-  margin-bottom: 3em; /* 마지막 아이템에 대한 하단 마진 추가 */
-}
-
-.paper {
-  display: flex;
-  flex-direction: column;
-}
-
-.paper-title {
-  color: #2b6cb0;
-  margin-top: 0;
-  margin-bottom: 0.5em;
-  font-weight: 550;
-  cursor: pointer;
-}
-
-.paper-detail {
-  font-size: 13px;
-  color: #8c9296;
-}
-
-.no-results-message {
-  font-size: 20px;
-  color: #ff0000;
-  margin-top: 20px;
 }
 
 .footer-container {
