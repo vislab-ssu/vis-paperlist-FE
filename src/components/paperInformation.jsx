@@ -64,7 +64,7 @@ function paperInformation({ paper, onClose }) {
             style={{ marginRight: "0.2em" }}
           />
           <span className="DOI" style={{ marginRight: "1em" }}>
-            DOI link
+            DOI Link
           </span>
         </div>
 
