@@ -4,6 +4,7 @@ import "../styles/paperListPanel.css";
 import PaperInformation from "./paperInformation";
 import ScrappedList from "./scrappedList";
 
+import moment from "moment";
 import StarRegular from "../assets/svg/star-regular.svg";
 import StarSolid from "../assets/svg/star-solid.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -119,7 +120,7 @@ function PaperListPanel({ searchResults }) {
                         className="citation-number"
                         style={{ marginRight: "1em" }}
                       >
-                        30
+                        {result.citation}
                       </span>
 
                       {/* 논문 연도 */}
@@ -128,7 +129,7 @@ function PaperListPanel({ searchResults }) {
                         style={{ marginRight: "0.2em" }}
                       />
                       <span className="year" style={{ marginRight: "1em" }}>
-                        year
+                        {moment(result.date).format("MMMM YYYY")}
                       </span>
 
                       {/* 논문 세션 */}
@@ -137,7 +138,8 @@ function PaperListPanel({ searchResults }) {
                         style={{ marginRight: "0.2em" }}
                       />
                       <span className="session" style={{ marginRight: "1em" }}>
-                        session
+                        {/* name-> session 으로 우선 설정*/}
+                        {result.name}
                       </span>
 
                       {/* 논문 저자 */}
@@ -145,8 +147,9 @@ function PaperListPanel({ searchResults }) {
                         icon={faUsers}
                         style={{ marginRight: "0.2em" }}
                       />
+                      {console.log(result)}
                       <span className="authors" style={{ marginRight: "1em" }}>
-                        Authors: {result.author}
+                        {result.author}
                       </span>
 
                       {/* 논문 DOI */}
@@ -155,7 +158,7 @@ function PaperListPanel({ searchResults }) {
                         style={{ marginRight: "0.2em" }}
                       />
                       <span className="DOI" style={{ marginRight: "1em" }}>
-                        DOI link
+                        {result.DOI}
                       </span>
                       {/* <p className="abstract">{result.abstract}</p> */}
                     </div>

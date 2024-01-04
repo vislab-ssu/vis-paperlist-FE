@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/paperInformation.css";
 
+import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -34,7 +35,7 @@ function paperInformation({ paper, onClose }) {
             style={{ marginRight: "0.2em" }}
           />
           <span className="citation-number" style={{ marginRight: "1em" }}>
-            30
+            {paper.citation}
           </span>
 
           {/* 논문 연도 */}
@@ -43,19 +44,20 @@ function paperInformation({ paper, onClose }) {
             style={{ marginRight: "0.2em" }}
           />
           <span className="year" style={{ marginRight: "1em" }}>
-            year
+            {moment(paper.date).format("MMMM YYYY")}
           </span>
 
           {/* 논문 세션 */}
           <FontAwesomeIcon icon={faBook} style={{ marginRight: "0.2em" }} />
           <span className="session" style={{ marginRight: "1em" }}>
-            session
+            {/* name-> session 으로 우선 설정*/}
+            {paper.name}
           </span>
 
           {/* 논문 저자 */}
           <FontAwesomeIcon icon={faUsers} style={{ marginRight: "0.2em" }} />
           <span className="authors" style={{ marginRight: "1em" }}>
-            Authors: {paper.author}
+            {paper.author}
           </span>
 
           {/* 논문 DOI */}
@@ -64,7 +66,7 @@ function paperInformation({ paper, onClose }) {
             style={{ marginRight: "0.2em" }}
           />
           <span className="DOI" style={{ marginRight: "1em" }}>
-            DOI link
+            {paper.DOI}
           </span>
         </div>
 
