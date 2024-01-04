@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-import "../styles/searchResult.css";
-import PaperListPanel from "../components/paperListPanel";
-import logo from "../assets/main-logo.png";
+import "../SearchResult/SearchResult.css";
+import PaperListPanel from "../../components/paperListPanel";
+import logo from "../../assets/main-logo.png";
 
 // 검색 결과 페이지
 function SearchResult() {
