@@ -23,44 +23,30 @@ function PaperListPanel({ searchResults }) {
   const [selectedPaper, setSelectedPaper] = useState(null);
   // 북마크의 상태
   const [scrappedList, setScrappedList] = useState(false);
-
   // 북마크를 위한 localStorage 상태 관리
   const [scrapList, setScrapList] = useState(() => {
     return JSON.parse(localStorage.getItem("scrap")) || [];
   });
 
-  // modal 창 열기
-  const handlePaperClick = (paper) => {
+  // 모달 토글
+  const toggleModal = (paper = null) => {
     setSelectedPaper(paper);
   };
 
-  // modal 창 닫기
-  const handleCloseModal = () => {
-    setSelectedPaper(null);
+  // bookMark 토글
+  const toggleBookMark = () => {
+    setScrappedList((prev) => !prev);
   };
 
-  // bookMark 열기
-  const handleOpenScrappedList = () => {
-    setScrappedList(true);
-  };
-
-  // bookMark 닫기
-  const handleCloseScrappedList = () => {
-    setScrappedList(false);
-  };
-
-  // bookMark 추가하기
-  const handleAddScrapList = (title) => {
-    if (!scrapList.includes(title)) {
-      const newScrapList = [...scrapList, title];
-      setScrapList(newScrapList);
-      localStorage.setItem("scrap", JSON.stringify(newScrapList));
+  // bookMark 추가 혹은 삭제 토글
+  const toggleScrappedList = (paper) => {
+    let newScrapList;
+    if (scrapList.includes(paper)) {
+      newScrapList = scrapList.filter((p) => p !== paper);
+    } else {
+      newScrapList = [...scrapList, paper];
     }
-  };
 
-  // bookMark 삭제하기
-  const handleRemoveScrapList = (title) => {
-    const newScrapList = scrapList.filter((t) => t != title);
     setScrapList(newScrapList);
     localStorage.setItem("scrap", JSON.stringify(newScrapList));
   };
@@ -74,7 +60,10 @@ function PaperListPanel({ searchResults }) {
 
       <div className="search-result-container">
         {selectedPaper != null ? (
-          <PaperInformation paper={selectedPaper} onClose={handleCloseModal} />
+          <PaperInformation
+            paper={selectedPaper}
+            onClose={() => toggleModal()}
+          />
         ) : searchResults.length > 0 ? (
           <div>
             <div className="right-panel-tool-bar">
@@ -82,30 +71,22 @@ function PaperListPanel({ searchResults }) {
                 {searchResults.length} results
               </div>
               <div className="scrapped-paper-list">
-                {scrappedList ? (
-                  <img
-                    src={StarSolid}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleCloseScrappedList()}
-                  />
-                ) : (
-                  <img
-                    src={StarRegular}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleOpenScrappedList()}
-                  />
-                )}
+                <img
+                  src={scrappedList ? StarSolid : StarRegular}
+                  style={{ cursor: "pointer" }}
+                  onClick={toggleBookMark}
+                />
               </div>
             </div>
             {scrappedList ? (
-              <ScrappedList />
+              <ScrappedList scrappedList={scrappedList} />
             ) : (
               searchResults.map((result, index) => (
                 <div key={index} className="search-result">
                   <div className="paper">
                     <h4
                       className="paper-title"
-                      onClick={() => handlePaperClick(result)}
+                      onClick={() => toggleModal(result)}
                     >
                       {result.title}
                     </h4>
@@ -164,25 +145,13 @@ function PaperListPanel({ searchResults }) {
                     </div>
                   </div>
                   <div className="paper-scrap">
-                    {scrapList.includes(result.title) ? (
-                      <img
-                        src={StarSolid}
-                        alt="Star Solid"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => {
-                          handleRemoveScrapList(result.title);
-                        }}
-                      />
-                    ) : (
-                      <img
-                        src={StarRegular}
-                        alt="Star Regular"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => {
-                          handleAddScrapList(result.title);
-                        }}
-                      />
-                    )}
+                    <img
+                      src={scrapList.includes(result) ? StarSolid : StarRegular}
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        toggleScrappedList(result);
+                      }}
+                    />
                   </div>
                 </div>
               ))
