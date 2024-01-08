@@ -38,6 +38,13 @@ function paperInformation({ paper, onClose }) {
             {paper.citation}
           </span>
 
+          {/* 논문 세션 */}
+          <FontAwesomeIcon icon={faBook} style={{ marginRight: "0.2em" }} />
+          <span className="session" style={{ marginRight: "1em" }}>
+            {/* name-> session 으로 우선 설정*/}
+            {paper.name}
+          </span>
+
           {/* 논문 연도 */}
           <FontAwesomeIcon
             icon={faCalendarDays}
@@ -45,13 +52,6 @@ function paperInformation({ paper, onClose }) {
           />
           <span className="year" style={{ marginRight: "1em" }}>
             {moment(paper.date).format("MMMM YYYY")}
-          </span>
-
-          {/* 논문 세션 */}
-          <FontAwesomeIcon icon={faBook} style={{ marginRight: "0.2em" }} />
-          <span className="session" style={{ marginRight: "1em" }}>
-            {/* name-> session 으로 우선 설정*/}
-            {paper.name}
           </span>
 
           {/* 논문 저자 */}

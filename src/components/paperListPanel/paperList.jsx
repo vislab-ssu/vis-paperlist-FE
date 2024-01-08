@@ -38,6 +38,26 @@ function paperList({
       </div>
       {searchResults.map((paper, index) => (
         <div key={index} className="search-result">
+          <div className="paper-index">
+            <div
+              className="index"
+              style={{
+                background:
+                  paper.citation > 100
+                    ? "#e34a33"
+                    : paper.citation > 50
+                    ? "#fc8d59"
+                    : paper.citation > 20
+                    ? "#fdcc8a"
+                    : paper.citation > 0
+                    ? "#fef0d9"
+                    : "#f4f4f4",
+                color: paper.citation > 50 ? "#fff" : "#000",
+              }}
+            >
+              {index + 1}
+            </div>
+          </div>
           <div className="paper">
             <h4 className="paper-title" onClick={() => toggleModal(paper)}>
               {paper.title}
@@ -53,6 +73,14 @@ function paperList({
                 {paper.citation}
               </span>
 
+              {console.log(paper)}
+              {/* 논문 세션 */}
+              <FontAwesomeIcon icon={faBook} style={{ marginRight: "0.2em" }} />
+              <span className="session" style={{ marginRight: "1em" }}>
+                {/* name-> session 으로 우선 설정*/}
+                {paper.name}
+              </span>
+
               {/* 논문 연도 */}
               <FontAwesomeIcon
                 icon={faCalendarDays}
@@ -60,13 +88,6 @@ function paperList({
               />
               <span className="year" style={{ marginRight: "1em" }}>
                 {moment(paper.date).format("MMMM YYYY")}
-              </span>
-
-              {/* 논문 세션 */}
-              <FontAwesomeIcon icon={faBook} style={{ marginRight: "0.2em" }} />
-              <span className="session" style={{ marginRight: "1em" }}>
-                {/* name-> session 으로 우선 설정*/}
-                {paper.name}
               </span>
 
               {/* 논문 저자 */}
@@ -83,9 +104,18 @@ function paperList({
                 icon={faUpRightFromSquare}
                 style={{ marginRight: "0.2em" }}
               />
-              <span className="DOI" style={{ marginRight: "1em" }}>
-                {paper.DOI}
-              </span>
+              <a
+                className="DOI"
+                style={{
+                  marginRight: "1em",
+                  cursor: "pointer",
+                  color: "#0071bc",
+                }}
+                href={paper.DOI}
+                target="_blank"
+              >
+                ACM Digital Library
+              </a>
               {/* <p className="abstract">{paper.abstract}</p> */}
             </div>
           </div>
