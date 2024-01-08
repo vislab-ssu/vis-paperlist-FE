@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/paperInformation.css";
+import "../../styles/paperInformation.css";
 
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -27,7 +27,7 @@
 
 .result-container {
   display: grid;
-  grid-template-columns: 3fr 2fr; /* 두 열로 구성 */
+  grid-template-columns: 1fr 1fr; /* 두 열로 구성 */
   gap: 20px; /* 열 사이 간격 */
   padding: 5px 5px 5px;
   height: 87vh;

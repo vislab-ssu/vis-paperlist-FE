@@ -1,0 +1,107 @@
+import React from "react";
+
+import "../../styles/paperList.css";
+
+import StarRegular from "../../assets/svg/star-regular.svg";
+import StarSolid from "../../assets/svg/star-solid.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBook,
+  faCalendarDays,
+  faQuoteRight,
+  faUpRightFromSquare,
+  faUsers,
+} from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
+
+function paperList({
+  searchResults,
+  scrappedList,
+  scrapList,
+  toggleModal,
+  toggleBookMark,
+  toggleScrappedList,
+}) {
+  return (
+    <div>
+      <div className="right-panel-tool-bar">
+        <div className="searchResult-length">
+          {searchResults.length} results
+        </div>
+        <div className="scrapped-paper-list">
+          <img
+            src={scrappedList ? StarSolid : StarRegular}
+            style={{ cursor: "pointer" }}
+            onClick={toggleBookMark}
+          />
+        </div>
+      </div>
+      {searchResults.map((paper, index) => (
+        <div key={index} className="search-result">
+          <div className="paper">
+            <h4 className="paper-title" onClick={() => toggleModal(paper)}>
+              {paper.title}
+            </h4>
+
+            <div className="paper-detail">
+              {/* 논문 인용횟수 */}
+              <FontAwesomeIcon
+                icon={faQuoteRight}
+                style={{ marginRight: "0.2em" }}
+              />
+              <span className="citation-number" style={{ marginRight: "1em" }}>
+                {paper.citation}
+              </span>
+
+              {/* 논문 연도 */}
+              <FontAwesomeIcon
+                icon={faCalendarDays}
+                style={{ marginRight: "0.2em" }}
+              />
+              <span className="year" style={{ marginRight: "1em" }}>
+                {moment(paper.date).format("MMMM YYYY")}
+              </span>
+
+              {/* 논문 세션 */}
+              <FontAwesomeIcon icon={faBook} style={{ marginRight: "0.2em" }} />
+              <span className="session" style={{ marginRight: "1em" }}>
+                {/* name-> session 으로 우선 설정*/}
+                {paper.name}
+              </span>
+
+              {/* 논문 저자 */}
+              <FontAwesomeIcon
+                icon={faUsers}
+                style={{ marginRight: "0.2em" }}
+              />
+              <span className="authors" style={{ marginRight: "1em" }}>
+                {paper.author}
+              </span>
+
+              {/* 논문 DOI */}
+              <FontAwesomeIcon
+                icon={faUpRightFromSquare}
+                style={{ marginRight: "0.2em" }}
+              />
+              <span className="DOI" style={{ marginRight: "1em" }}>
+                {paper.DOI}
+              </span>
+              {/* <p className="abstract">{paper.abstract}</p> */}
+            </div>
+          </div>
+          <div className="paper-scrap">
+            <img
+              src={scrapList.includes(paper) ? StarSolid : StarRegular}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                toggleScrappedList(paper);
+              }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default paperList;
