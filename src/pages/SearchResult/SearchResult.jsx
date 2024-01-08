@@ -52,8 +52,14 @@ function SearchResult() {
 
       <div className="result-container">
         <div className="left-panel">
-          <div className="panel-header">Left Panel Title</div>
-          test
+          <div>
+            <div className="panel-header-filter">left-1</div>
+          </div>
+          <div>{/* <div className="panel-header"></div> */}</div>
+        </div>
+
+        <div className="left-panel">
+          <div className="panel-header-filter">left-2</div>
         </div>
 
         <PaperListPanel searchResults={searchResults} />

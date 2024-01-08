@@ -3,11 +3,11 @@
   border: 1px solid #e2e8f0; /* 테두리 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
   border-radius: 8px;
-  padding: 0.8em;
+  padding: 0.5em;
   overflow: hidden; /* 내부 내용이 넘치면 숨김 */
 }
 
-.panel-header {
+.panel-header-paperList {
   font-weight: bold;
   background: #e2e8f0;
   color: #2d3748;

@@ -70,7 +70,7 @@ function PaperListPanel({ searchResults }) {
 
   return (
     <div className="right-panel">
-      <div className="panel-header">
+      <div className="panel-header-paperList">
         <FontAwesomeIcon icon={faList} style={{ marginRight: "0.5em" }} />
         <span>Papers</span>
       </div>
