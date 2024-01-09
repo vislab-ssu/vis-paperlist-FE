@@ -48,6 +48,7 @@
 }
 
 .paper {
+  flex: 1;  /* 모든 paper 요소가 동일한 너비를 가지도록 설정 */
   display: flex;
   flex-direction: column;
   /* border: 1px solid #e2e8f0; */
