@@ -65,9 +65,14 @@ function paperInformation({ paper, onClose }) {
             icon={faUpRightFromSquare}
             style={{ marginRight: "0.2em" }}
           />
-          <span className="DOI" style={{ marginRight: "1em" }}>
-            {paper.DOI}
-          </span>
+          <a
+            className="DOI"
+            style={{ marginRight: "1em", cursor: "pointer", color: "#0071bc" }}
+            href={paper.DOI}
+            target="_blank"
+          >
+            ACM Digital Library
+          </a>
         </div>
 
         <p>{paper.abstract}</p>

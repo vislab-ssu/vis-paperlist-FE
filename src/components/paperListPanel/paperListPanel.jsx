@@ -53,7 +53,15 @@ function PaperListPanel({ searchResults }) {
     }
 
     if (scrappedList) {
-      return <ScrappedList scrappedList={scrappedList} />;
+      return (
+        <ScrappedList
+          scrappedList={scrappedList}
+          scrapList={scrapList}
+          toggleModal={toggleModal}
+          toggleBookMark={toggleBookMark}
+          toggleScrappedList={toggleScrappedList}
+        />
+      );
     }
 
     return (

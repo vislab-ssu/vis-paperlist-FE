@@ -34,7 +34,7 @@
   /* overflow: auto; */
 }
 
-.left-panel {
+.left-panel-filter {
   background: #ffffff;
   border: 1px solid #e2e8f0; /* 테두리 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
@@ -44,6 +44,31 @@
 }
 
 .panel-header-filter {
+  height: 1.8em;
+  font-weight: bold;
+  background: #e2e8f0;
+  color: #2d3748;
+  padding: 5px 10px;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid #ddd; /* 하단 경계선 */
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 상단에 그림자 효과 */
+}
+
+.left-panel-2 {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  background: #ffffff;
+  border: 1px solid #e2e8f0; /* 테두리 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
+  border-radius: 8px;
+  padding: 0.5em;
+  overflow: hidden; /* 내부 내용이 넘치면 숨김 */
+}
+
+.panel-header-2 {
   height: 1.8em;
   font-weight: bold;
   background: #e2e8f0;

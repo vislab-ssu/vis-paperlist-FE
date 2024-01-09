@@ -51,15 +51,20 @@ function SearchResult() {
       <hr></hr>
 
       <div className="result-container">
-        <div className="left-panel">
+        <div className="left-panel-filter">
           <div>
-            <div className="panel-header-filter">left-1</div>
+            <div className="panel-header-filter">filters</div>
           </div>
           <div>{/* <div className="panel-header"></div> */}</div>
         </div>
 
-        <div className="left-panel">
-          <div className="panel-header-filter">left-2</div>
+        <div className="left-panel-2">
+          <div className="panel-section">
+            <div className="panel-header-2">left-2</div>1
+          </div>
+          <div className="panel-section">
+            <div className="panel-header-2">left-2</div>2
+          </div>
         </div>
 
         <PaperListPanel searchResults={searchResults} />
