@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { useLocation } from "react-router-dom";
 
+import { useGetSearchResults } from "./hooks";
 import "../SearchResult/SearchResult.css";
 import YearsBarChart from "../../components/filters/yearsBarChart";
 import PaperListPanel from "../../components/paperListPanel/paperListPanel";
 import logo from "../../assets/main-logo.png";
-import { useGetSearchResults } from "./hooks";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
 
 // 검색 결과 페이지
 function SearchResult() {
@@ -44,7 +46,13 @@ function SearchResult() {
           </div>
         </div>
 
-        <PaperListPanel searchResults={searchResults} />
+        <div className="right-panel">
+          <div className="panel-header-paperList">
+            <FontAwesomeIcon icon={faList} style={{ marginRight: "0.5em" }} />
+            <span>Papers</span>
+          </div>
+          <PaperListPanel searchResults={searchResults} />
+        </div>
       </div>
 
       <div className="footer-container">

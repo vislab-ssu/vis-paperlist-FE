@@ -5,9 +5,6 @@ import PaperList from "./paperList";
 import PaperInformation from "./paperInformation";
 import ScrappedList from "./scrappedList";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList } from "@fortawesome/free-solid-svg-icons";
-
 // 검색 결과 페이지
 function PaperListPanel({ searchResults }) {
   // 선택된 논문의 modal창의 상태
@@ -77,19 +74,12 @@ function PaperListPanel({ searchResults }) {
   };
 
   return (
-    <div className="right-panel">
-      <div className="panel-header-paperList">
-        <FontAwesomeIcon icon={faList} style={{ marginRight: "0.5em" }} />
-        <span>Papers</span>
-      </div>
-
-      <div className="search-result-container">
-        {searchResults.length > 0 ? (
-          renderContent()
-        ) : (
-          <p className="no-results-message">검색 결과가 없습니다.</p>
-        )}
-      </div>
+    <div className="search-result-container">
+      {searchResults.length > 0 ? (
+        renderContent()
+      ) : (
+        <p className="no-results-message">검색 결과가 없습니다.</p>
+      )}
     </div>
   );
 }
