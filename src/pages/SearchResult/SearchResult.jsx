@@ -3,39 +3,16 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 import "../SearchResult/SearchResult.css";
+import YearsBarChart from "../../components/filters/yearsBarChart";
 import PaperListPanel from "../../components/paperListPanel/paperListPanel";
 import logo from "../../assets/main-logo.png";
+import { useGetSearchResults } from "./hooks";
 
 // 검색 결과 페이지
 function SearchResult() {
   const location = useLocation();
   const { searchName, searchType } = location.state;
-
-  // BE로부터 받은 정보 상태
-  const [searchResults, setSearchResults] = useState([]);
-
-  async function getPaper() {
-    await axios
-      .get("/paper", {
-        params: {
-          search: searchType,
-          query: searchName,
-        },
-      })
-      .then((res) => {
-        let papers = res.data;
-        setSearchResults(papers);
-        return res;
-      })
-      .catch((err) => {
-        console.log(err);
-        return err;
-      });
-  }
-
-  useEffect(() => {
-    getPaper();
-  }, []);
+  const searchResults = useGetSearchResults(searchName, searchType);
 
   return (
     <div className="search-result-page">
@@ -54,8 +31,8 @@ function SearchResult() {
         <div className="left-panel-filter">
           <div>
             <div className="panel-header-filter">filters</div>
+            <YearsBarChart />
           </div>
-          <div>{/* <div className="panel-header"></div> */}</div>
         </div>
 
         <div className="left-panel-2">
