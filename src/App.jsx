@@ -4,7 +4,7 @@ import Home from "./pages/Home/Home";
 import SearchResult from "./pages/SearchResult/SearchResult";
 import axios from "axios";
 
-axios.defaults.baseURL = import.meta.env.VITE_APP_API_SRC;
+// axios.defaults.baseURL = import.meta.env.VITE_APP_API_SRC;
 
 function App() {
   return (

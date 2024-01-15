@@ -37,6 +37,11 @@ sketch
 # End of https://www.toptal.com/developers/gitignore/api/react,yarn
 
 
-# environment file
+# environment files
 .env
 *.env.*
+
+# build files
+dist/
+
+# *.sh

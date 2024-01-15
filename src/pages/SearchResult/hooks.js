@@ -7,7 +7,7 @@ export function useGetSearchResults(searchName, searchType) {
 
   async function getPaper() {
     await axios
-      .get("/paper", {
+      .get("/api/paper", {
         params: {
           search: searchType,
           query: searchName,
