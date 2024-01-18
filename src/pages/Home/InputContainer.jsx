@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "../Home/InputContainer.css";
 import searchIcon from "../../assets/Search-icon.png";
 
@@ -11,6 +11,13 @@ function InputContainer({
   goResult,
   activeEnter,
 }) {
+  const inputRef = useRef();
+  // console.log("render")
+  
+  useEffect( () => {
+    inputRef.current.focus()
+  }, [inputRef])
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       goResult();
@@ -25,6 +32,7 @@ function InputContainer({
           <img className="searchIcon" alt="search-icon" src={searchIcon} />
         </div>
         <input
+          ref={inputRef}
           className="inputName"
           type="text"
           value={name}
