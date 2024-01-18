@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useNavigation } from "react-router-dom";
 
 import { useGetSearchResults } from "./hooks";
 import "../SearchResult/SearchResult.css";
@@ -12,14 +12,21 @@ import { faList } from "@fortawesome/free-solid-svg-icons";
 
 // 검색 결과 페이지
 function SearchResult() {
+  const navigate = useNavigate();
   const location = useLocation();
   const { searchName, searchType } = location.state;
   const searchResults = useGetSearchResults(searchName, searchType);
 
+  const goHome = () => {
+    console.log("1")
+    navigate("/");
+    console.log("2")
+  }
+
   return (
     <div className="search-result-page">
       <div className="header-container">
-        <div className="logo-container">
+        <div className="logo-container" onClick={ () => goHome() }>
           <img src={logo} alt="image" width="175" />
         </div>
         <div className="header-search-title">
