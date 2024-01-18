@@ -11,12 +11,7 @@ function Home() {
   const navigate = useNavigate();
 
   const goResult = () => {
-    navigate("/searchResult", {
-      state: {
-        searchName: name,
-        searchType: searchType,
-      },
-    });
+    navigate(`/searchResult?searchName=${name}&searchType=${searchType}`);
   };
 
   const activeEnter = (e) => {

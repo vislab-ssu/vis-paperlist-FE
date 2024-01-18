@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useNavigate, useNavigation } from "react-router-dom";
+import { useLocation, useNavigate, useNavigation, useSearchParams } from "react-router-dom";
 
 import { useGetSearchResults } from "./hooks";
 import "../SearchResult/SearchResult.css";
@@ -13,14 +13,16 @@ import { faList } from "@fortawesome/free-solid-svg-icons";
 // 검색 결과 페이지
 function SearchResult() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { searchName, searchType } = location.state;
+  // const location = useLocation();
+  // const { searchName, searchType } = location.state;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchName = searchParams.get('searchName');
+  const searchType = searchParams.get('searchType');
+
   const searchResults = useGetSearchResults(searchName, searchType);
 
   const goHome = () => {
-    console.log("1")
     navigate("/");
-    console.log("2")
   }
 
   return (
