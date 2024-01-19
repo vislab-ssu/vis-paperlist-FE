@@ -6,7 +6,7 @@ import PaperInformation from "./paperInformation";
 import ScrappedList from "./scrappedList";
 
 // 검색 결과 페이지
-function PaperListPanel({ searchResults }) {
+function PaperListPanel({ searchResults, searchName }) {
   // 선택된 논문의 modal창의 상태
   const [selectedPaper, setSelectedPaper] = useState(null);
   // 북마크의 상태
@@ -64,6 +64,7 @@ function PaperListPanel({ searchResults }) {
     return (
       <PaperList
         searchResults={searchResults}
+        searchName={searchName}
         scrappedList={scrappedList}
         scrapList={scrapList}
         toggleModal={toggleModal}

@@ -1,5 +1,10 @@
 import React from "react";
-import { useLocation, useNavigate, useNavigation, useSearchParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useNavigation,
+  useSearchParams,
+} from "react-router-dom";
 
 import { useGetSearchResults } from "./hooks";
 import "../SearchResult/SearchResult.css";
@@ -16,20 +21,20 @@ function SearchResult() {
   // const location = useLocation();
   // const { searchName, searchType } = location.state;
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchName = searchParams.get('searchName');
-  const searchType = searchParams.get('searchType');
+  const searchName = searchParams.get("searchName");
+  const searchType = searchParams.get("searchType");
 
   // BE로부터 검색 결과 받아오기
   const searchResults = useGetSearchResults(searchName, searchType);
 
   const goHome = () => {
     navigate("/");
-  }
+  };
 
   return (
     <div className="search-result-page">
       <div className="header-container">
-        <div className="logo-container" onClick={ () => goHome() }>
+        <div className="logo-container" onClick={() => goHome()}>
           <img src={logo} alt="image" width="175" />
         </div>
         <div className="header-search-title">
@@ -42,10 +47,10 @@ function SearchResult() {
       <div className="result-container">
         <div className="left-panel-filter">
           <div className="panel-header-filter">
-            <FontAwesomeIcon icon={faFilter} style={{ marginRight: "0.5em"}}/>
+            <FontAwesomeIcon icon={faFilter} style={{ marginRight: "0.5em" }} />
             <span>Filters</span>
           </div>
-          <YearsBarChart searchResults={searchResults}/>
+          <YearsBarChart searchResults={searchResults} />
         </div>
 
         <div className="left-panel-2">
@@ -62,7 +67,10 @@ function SearchResult() {
             <FontAwesomeIcon icon={faList} style={{ marginRight: "0.5em" }} />
             <span>Papers</span>
           </div>
-          <PaperListPanel searchResults={searchResults} />
+          <PaperListPanel
+            searchResults={searchResults}
+            searchName={searchName}
+          />
         </div>
       </div>
 

@@ -16,12 +16,27 @@ import moment from "moment";
 
 function paperList({
   searchResults,
+  searchName,
   scrappedList,
   scrapList,
   toggleModal,
   toggleBookMark,
   toggleScrappedList,
 }) {
+  const highlightMatch = (text, searchTerm) => {
+    // 정규표현식을 이용하여 검색어 분리
+    const splitText = text.split(new RegExp(`(${searchTerm})`, "gi"));
+    return splitText.map((part, index) =>
+      part.toLowerCase() === searchTerm.toLowerCase() ? (
+        <span key={index} className="paper-title-highlight">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   return (
     <div>
       <div className="right-panel-tool-bar">
@@ -60,7 +75,7 @@ function paperList({
           </div>
           <div className="paper">
             <h4 className="paper-title" onClick={() => toggleModal(paper)}>
-              {paper.title}
+              {highlightMatch(paper.title, searchName)}
             </h4>
 
             <div className="paper-detail">
