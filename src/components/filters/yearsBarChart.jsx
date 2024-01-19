@@ -64,7 +64,10 @@ const YearsBarChart = ({ searchResults }) => {
       .style("text-anchor", "end");
 
     // Add Y axis
-    const y = d3.scaleLinear().domain([0, 30]).range([height, 0]);
+    const y = d3
+      .scaleLinear()
+      .domain([0, Math.max(...dataByYear.map((v) => v.Value))])
+      .range([height, 0]);
     svg.append("g").call(d3.axisLeft(y));
 
     // Bars
