@@ -6,8 +6,6 @@ COPY package.json /app
 RUN yarn install
 
 COPY . /app
-ENV API_SRC=paperlist-be-container
-ENV API_PORT=3001
 
 RUN yarn run build
 

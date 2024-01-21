@@ -6,9 +6,11 @@ export default defineConfig(({ command, mode }) => {
   // Load env file based on `mode` in the current working directory.
   // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
   const env = loadEnv(mode, process.cwd(), "");
-  return {
+  let config = {
     plugins: [react()],
-    server: {
+  };
+  if (env.NODE_ENV == "development") {
+    config["server"] = {
       proxy: {
         "/api": {
           target: "http://" + env.API_SRC + ":" + env.API_PORT,
@@ -18,6 +20,8 @@ export default defineConfig(({ command, mode }) => {
           ws: true,
         },
       },
-    },
-  };
+    };
+  }
+  console.log(config);
+  return config;
 });
