@@ -10,6 +10,7 @@ import axios from "axios";
 // import { useGetSearchResults } from "./hooks";
 import "../SearchResult/SearchResult.css";
 import YearsBarChart from "../../components/filters/yearsBarChart";
+import WordcloudChart from "../../components/charts/wordcloudChart";
 import PaperListPanel from "../../components/paperListPanel/paperListPanel";
 import logo from "../../assets/main-logo.png";
 
@@ -26,6 +27,7 @@ function SearchResult() {
   const searchType = searchParams.get("searchType");
 
   const [searchResults, setSearchResults] = useState([]);
+  const [wordcloudData, setWordcloudData] = useState([]);
   // BE로부터 검색 결과 받아오기
   // const searchResults = useGetSearchResults(searchName, searchType);
 
@@ -43,9 +45,10 @@ function SearchResult() {
           },
         })
         .then((res) => {
-          let papers = res.data;
-          // let { papers, word_list } = res.data;
+          // let papers = res.data;
+          let { papers, myWords } = res.data;
           setSearchResults(papers);
+          setWordcloudData(myWords);
           return res;
         })
         .catch((err) => {
@@ -56,7 +59,8 @@ function SearchResult() {
     getPaper();
   }, [searchType, searchName]);
 
-  // console.log(word_list);
+  console.log(searchResults);
+  console.log(wordcloudData);
 
   return (
     <div className="search-result-page">
@@ -85,9 +89,9 @@ function SearchResult() {
             <div className="panel-header-2">left-2</div>1
           </div>
           <div className="panel-section">
-            <div className="panel-header-2">left-2</div>2
+            <div className="panel-header-2">left-2</div>
+            <WordcloudChart wordcloudData={wordcloudData} />
           </div>
-          {console.log("메롱")}
         </div>
 
         <div className="right-panel">

@@ -27,7 +27,6 @@ function paperInformation({ paper, onClose }) {
 
       <div className="paper-container">
         <h3 className="paper-title">{paper.title}</h3>
-
         <div className="paper-detail">
           {/* 논문 인용횟수 */}
           <FontAwesomeIcon
@@ -74,8 +73,8 @@ function paperInformation({ paper, onClose }) {
             ACM Digital Library
           </a>
         </div>
-
         <p>{paper.abstract}</p>
+        {console.log(paper.keywordList)}
       </div>
     </div>
   );
