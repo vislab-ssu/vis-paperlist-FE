@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   useLocation,
   useNavigate,
   useNavigation,
   useSearchParams,
 } from "react-router-dom";
+import axios from "axios";
 
-import { useGetSearchResults } from "./hooks";
+// import { useGetSearchResults } from "./hooks";
 import "../SearchResult/SearchResult.css";
 import YearsBarChart from "../../components/filters/yearsBarChart";
 import PaperListPanel from "../../components/paperListPanel/paperListPanel";
@@ -24,12 +25,38 @@ function SearchResult() {
   const searchName = searchParams.get("searchName");
   const searchType = searchParams.get("searchType");
 
+  const [searchResults, setSearchResults] = useState([]);
   // BE로부터 검색 결과 받아오기
-  const searchResults = useGetSearchResults(searchName, searchType);
+  // const searchResults = useGetSearchResults(searchName, searchType);
 
   const goHome = () => {
     navigate("/");
   };
+
+  useEffect(() => {
+    async function getPaper() {
+      await axios
+        .get("/api/paper", {
+          params: {
+            search: searchType,
+            query: searchName,
+          },
+        })
+        .then((res) => {
+          let papers = res.data;
+          // let { papers, word_list } = res.data;
+          setSearchResults(papers);
+          return res;
+        })
+        .catch((err) => {
+          console.log(err);
+          return err;
+        });
+    }
+    getPaper();
+  }, [searchType, searchName]);
+
+  // console.log(word_list);
 
   return (
     <div className="search-result-page">
@@ -60,6 +87,7 @@ function SearchResult() {
           <div className="panel-section">
             <div className="panel-header-2">left-2</div>2
           </div>
+          {console.log("메롱")}
         </div>
 
         <div className="right-panel">
