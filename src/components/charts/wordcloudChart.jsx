@@ -43,7 +43,6 @@ const WordcloudChart = ({ wordcloudData }) => {
         return d.size;
       }) // font size of words
       .on("end", draw);
-    console.log({ layout });
     layout.start();
 
     // This function takes the output of 'layout' above and draw the words

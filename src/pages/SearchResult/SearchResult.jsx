@@ -20,16 +20,22 @@ import { faList, faFilter } from "@fortawesome/free-solid-svg-icons";
 // 검색 결과 페이지
 function SearchResult() {
   const navigate = useNavigate();
+
+  // 검색어, 검색조건
   // const location = useLocation();
   // const { searchName, searchType } = location.state;
   const [searchParams, setSearchParams] = useSearchParams();
   const searchName = searchParams.get("searchName");
   const searchType = searchParams.get("searchType");
 
-  const [searchResults, setSearchResults] = useState([]);
+  // wordcloudData
   const [wordcloudData, setWordcloudData] = useState([]);
+  // brush barChartSelectedList
+  const [barChartSelectedList, setBarChartSelectedList] = useState([]);
+
   // BE로부터 검색 결과 받아오기
   // const searchResults = useGetSearchResults(searchName, searchType);
+  const [searchResults, setSearchResults] = useState([]);
 
   const goHome = () => {
     navigate("/");
@@ -81,7 +87,11 @@ function SearchResult() {
             <FontAwesomeIcon icon={faFilter} style={{ marginRight: "0.5em" }} />
             <span>Filters</span>
           </div>
-          <YearsBarChart searchResults={searchResults} />
+          <YearsBarChart
+            searchResults={searchResults}
+            barChartSelectedList={barChartSelectedList}
+            setBarChartSelectedList={setBarChartSelectedList}
+          />
         </div>
 
         <div className="left-panel-2">
