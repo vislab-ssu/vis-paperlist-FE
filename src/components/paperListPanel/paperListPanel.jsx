@@ -6,7 +6,7 @@ import PaperInformation from "./paperInformation";
 import ScrappedList from "./scrappedList";
 
 // 검색 결과 페이지
-function PaperListPanel({ searchResults, searchName }) {
+function PaperListPanel({ searchResults, searchName, barChartSelectedList }) {
   // 선택된 논문의 modal창의 상태
   const [selectedPaper, setSelectedPaper] = useState(null);
   // 북마크의 상태
@@ -45,7 +45,11 @@ function PaperListPanel({ searchResults, searchName }) {
   const renderContent = () => {
     if (selectedPaper != null) {
       return (
-        <PaperInformation paper={selectedPaper} onClose={() => toggleModal()} />
+        <PaperInformation
+          paper={selectedPaper}
+          searchName={searchName}
+          onClose={() => toggleModal()}
+        />
       );
     }
 
@@ -70,6 +74,7 @@ function PaperListPanel({ searchResults, searchName }) {
         toggleModal={toggleModal}
         toggleBookMark={toggleBookMark}
         toggleScrappedList={toggleScrappedList}
+        barChartSelectedList={barChartSelectedList}
       />
     );
   };

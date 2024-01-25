@@ -112,6 +112,7 @@ function SearchResult() {
           <PaperListPanel
             searchResults={searchResults}
             searchName={searchName}
+            barChartSelectedList={barChartSelectedList}
           />
         </div>
       </div>

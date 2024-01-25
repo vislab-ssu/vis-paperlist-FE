@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import "../../styles/paperList.css";
 
@@ -22,6 +22,7 @@ function paperList({
   toggleModal,
   toggleBookMark,
   toggleScrappedList,
+  barChartSelectedList,
 }) {
   const highlightMatch = (text, searchTerm) => {
     // 정규표현식을 이용하여 검색어 분리
@@ -37,11 +38,26 @@ function paperList({
     );
   };
 
+  const [renderingResults, setRenderingResults] = useState([]);
+
+  // brush 연도 존재 ? filterling 버전 : searchResults 그대로
+  useEffect(() => {
+    if (barChartSelectedList.length === 0) {
+      setRenderingResults(searchResults);
+    } else {
+      setRenderingResults(
+        searchResults.filter((paper) =>
+          barChartSelectedList.includes(moment(paper.date).format("YYYY"))
+        )
+      );
+    }
+  }, [searchResults, barChartSelectedList]);
+
   return (
     <div>
       <div className="right-panel-tool-bar">
         <div className="searchResult-length">
-          {searchResults.length} results
+          {renderingResults.length} results
         </div>
         <div className="scrapped-paper-list">
           <img
@@ -51,7 +67,7 @@ function paperList({
           />
         </div>
       </div>
-      {searchResults.map((paper, index) => (
+      {renderingResults.map((paper, index) => (
         <div key={index} className="search-result">
           <div className="paper-index">
             <div
