@@ -12,8 +12,22 @@ import {
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 
-function paperInformation({ paper, onClose }) {
+function paperInformation({ paper, searchName, onClose }) {
   if (!paper) return null;
+
+  const highlightMatch = (text, searchTerm) => {
+    // 정규표현식을 이용하여 검색어 분리
+    const splitText = text.split(new RegExp(`(${searchTerm})`, "gi"));
+    return splitText.map((part, index) =>
+      part.toLowerCase() === searchTerm.toLowerCase() ? (
+        <span key={index} className="paper-title-highlight">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
 
   return (
     <div className="paper-information">
@@ -26,7 +40,9 @@ function paperInformation({ paper, onClose }) {
       <hr></hr>
 
       <div className="paper-container">
-        <h3 className="paper-title">{paper.title}</h3>
+        <h3 className="paper-title">
+          {highlightMatch(paper.title, searchName)}
+        </h3>
         <div className="paper-detail">
           {/* 논문 인용횟수 */}
           <FontAwesomeIcon
