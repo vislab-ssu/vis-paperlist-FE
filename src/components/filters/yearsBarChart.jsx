@@ -78,19 +78,25 @@ const YearsBarChart = ({
       .range([height, 0]);
     container.append("g").attr("class", "yAxis").call(d3.axisLeft(y));
 
-    // Brush
+    ///////////
+    // Brush //
+    ///////////
+
     const brush = d3
-      .brushX()
+      .brushX() // brushX() : 상하 / brushY() : 좌우
       .extent([
         [0, 0],
         [width, height],
-      ]) // brush 활성화 영역 설정 : [ [x0, y0], [x1, y1] ] (좌상단, 우상단)
+      ]) // brush 활성화 영역 설정 : [ [x0, y0], [x1, y1] ] (좌상단, 우하단)
       .on("brush", brushing)
       .on("end", brushEnd);
+    // .on("start") : mousedown / .on("brush") mouse move / .on("end") mouse up
 
     const brushElement = container.call(brush);
 
     function brushing(e) {
+      //(e: d3.D3BrushEvent)
+      // e.move와 같은 기능을 사용할 때 아래 방어코드를 사용하지 않으면 무한루프
       if (!e.sourceEvent) return; // e.sourceEvent : 브러시 발생시킨 기본 DOM 이벤트 참조 (brush.move)와 같은 코드상 이동에 방어
       if (!e.selection) return; // e.selection : 현재 브러시 선택 영역 (대충 클릭했을 때 방어)
       const [x0, x1] = e.selection; // 선택 영역 시작점 : x0 / 선택 영역 끝점 : x1
@@ -106,7 +112,13 @@ const YearsBarChart = ({
       });
 
       const [left, right] = d3.extent(barChartSelectedList.map((v) => x(v))); // extent 함수 : [최솟값, 최댓값] 반환
-      // brushElement.call(brush.move, [left, right + margin.right ]);
+
+      // snap 기능 (막대 위치에 맞게 자동으로 brushing을 해주는 것)
+      brushElement.call(brush.move, [
+        left,
+        right + margin.right + x.bandwidth() / 2,
+      ]);
+
       // 실시간 적용이 하고싶으면 setBarChartSelectedList를 여기서 사용하고 brushEnd 핸들러 제거
       setBarChartSelectedList(barChartSelectedList);
     }
