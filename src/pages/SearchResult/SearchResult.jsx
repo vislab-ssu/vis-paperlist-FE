@@ -15,7 +15,12 @@ import PaperListPanel from "../../components/paperListPanel/paperListPanel";
 import logo from "../../assets/main-logo.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList, faFilter } from "@fortawesome/free-solid-svg-icons";
+import {
+  faList,
+  faFilter,
+  faChartLine,
+} from "@fortawesome/free-solid-svg-icons";
+import EmbeddingChart from "../../components/charts/embeddingChart";
 
 // 검색 결과 페이지
 function SearchResult() {
@@ -32,6 +37,8 @@ function SearchResult() {
   const [wordcloudData, setWordcloudData] = useState([]);
   // brush barChartSelectedList
   const [barChartSelectedList, setBarChartSelectedList] = useState([]);
+  // embeddingData
+  const [embeddingData, setEmbeddingData] = useState([]);
 
   // BE로부터 검색 결과 받아오기
   // const searchResults = useGetSearchResults(searchName, searchType);
@@ -52,9 +59,10 @@ function SearchResult() {
         })
         .then((res) => {
           // let papers = res.data;
-          let { papers, myWords } = res.data;
+          let { papers, myWords, embeddingData } = res.data;
           setSearchResults(papers);
           setWordcloudData(myWords);
+          setEmbeddingData(embeddingData);
           return res;
         })
         .catch((err) => {
@@ -92,15 +100,22 @@ function SearchResult() {
             barChartSelectedList={barChartSelectedList}
             setBarChartSelectedList={setBarChartSelectedList}
           />
+          <WordcloudChart wordcloudData={wordcloudData} />
         </div>
 
         <div className="left-panel-2">
           <div className="panel-section">
-            <div className="panel-header-2">left-2</div>1
+            <div className="panel-header-2">
+              <FontAwesomeIcon
+                icon={faChartLine}
+                style={{ marginRight: "0.5em" }}
+              />
+              <span>charts</span>
+            </div>
+            <EmbeddingChart embeddingData={embeddingData} />
           </div>
           <div className="panel-section">
             <div className="panel-header-2">left-2</div>
-            <WordcloudChart wordcloudData={wordcloudData} />
           </div>
         </div>
 
