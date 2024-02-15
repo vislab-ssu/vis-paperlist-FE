@@ -59,15 +59,14 @@ const EmbeddingChart = ({ embeddingData }) => {
     chartArea
       .append("g")
       .attr("class", "xAxis")
-      .attr("transform", `translate(0, ${height})`)
-      .call(d3.axisBottom(x));
+      .attr("transform", `translate(0, ${height})`);
 
     const y = d3
       .scaleLinear()
       .range([height, 0])
       .domain([yExtent[0] - yPadding, yExtent[1] + yPadding])
       .nice();
-    chartArea.append("g").attr("class", "yAxis").call(d3.axisLeft(y));
+    chartArea.append("g").attr("class", "yAxis");
 
     const tooltip = d3
       .select("body")
