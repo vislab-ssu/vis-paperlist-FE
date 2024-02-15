@@ -28,7 +28,6 @@ const YearsBarChart = ({
         if (item.Year === year) item.Value += 1;
       });
     });
-    console.log(dataByYear);
     return dataByYear;
   };
 

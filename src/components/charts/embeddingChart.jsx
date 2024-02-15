@@ -4,7 +4,6 @@ import { DBSCAN } from "density-clustering";
 
 const EmbeddingChart = ({ embeddingData }) => {
   const svgRef = useRef();
-  console.log(embeddingData);
 
   useEffect(() => {
     render();
@@ -15,7 +14,6 @@ const EmbeddingChart = ({ embeddingData }) => {
     const dbscan = new DBSCAN();
     const vectors = embeddingData.map((d) => [d.vector_x, d.vector_y]);
     const clusters = dbscan.run(vectors, 0.2, 5);
-    console.log(clusters);
 
     // 클러스터 ID 할당
     const clusterIds = new Array(vectors.length).fill(-1);
@@ -95,11 +93,10 @@ const EmbeddingChart = ({ embeddingData }) => {
       .attr("r", 5)
       .style("fill", (d) => color(clusterIds[embeddingData.indexOf(d)])) // 클러스터에 따라 색상 적용
       .on("mouseover", (event, d) => {
-        tooltip
-          .style("visibility", "visible")
-          .html(
-            `Title: ${d.title}<br/>Author: ${d.author}<br/>Citations: ${d.citation}<br/>DOI: ${d.doi}`
-          );
+        tooltip.style("visibility", "visible").html(
+          `Title: ${d.title}<br/>Author: ${d.author}<br/> Abstract: ${d.abstract}
+            <br/>Citations: ${d.citation}<br/>DOI: ${d.doi}`
+        );
       })
       .on("mousemove", (event) => {
         tooltip

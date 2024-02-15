@@ -104,7 +104,6 @@ function paperList({
                 {paper.citation}
               </span>
 
-              {console.log(paper)}
               {/* 논문 세션 */}
               <FontAwesomeIcon icon={faBook} style={{ marginRight: "0.2em" }} />
               <span className="session" style={{ marginRight: "1em" }}>

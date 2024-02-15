@@ -11,6 +11,7 @@ import axios from "axios";
 import "../SearchResult/SearchResult.css";
 import YearsBarChart from "../../components/filters/yearsBarChart";
 import WordcloudChart from "../../components/charts/wordcloudChart";
+import CitationChart from "../../components/charts/citationChart";
 import PaperListPanel from "../../components/paperListPanel/paperListPanel";
 import logo from "../../assets/main-logo.png";
 
@@ -73,9 +74,6 @@ function SearchResult() {
     getPaper();
   }, [searchType, searchName]);
 
-  console.log(searchResults);
-  console.log(wordcloudData);
-
   return (
     <div className="search-result-page">
       <div className="header-container">
@@ -116,6 +114,7 @@ function SearchResult() {
           </div>
           <div className="panel-section">
             <div className="panel-header-2">left-2</div>
+            <CitationChart searchResults={searchResults} />
           </div>
         </div>
 

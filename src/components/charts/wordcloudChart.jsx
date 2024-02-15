@@ -11,7 +11,6 @@ const WordcloudChart = ({ wordcloudData }) => {
 
   const render = () => {
     var myWords = wordcloudData;
-    console.log({ myWords });
     // set the dimensions and margins of the graph
     var margin = { top: 10, right: 10, bottom: 10, left: 10 },
       width = 300 - margin.left - margin.right,
@@ -48,7 +47,6 @@ const WordcloudChart = ({ wordcloudData }) => {
     // This function takes the output of 'layout' above and draw the words
     // Wordcloud features that are THE SAME from one word to the other can be here
     function draw(words) {
-      console.log({ words });
       svg
         .append("g")
         .attr(
