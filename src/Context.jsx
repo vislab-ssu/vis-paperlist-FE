@@ -8,7 +8,6 @@ export function GlobalContext({ children }) {
   return (
     <DataContext.Provider value={{ filteredPaper, setFilteredPaper }}>
       {children}
-      {console.log(filteredPaper)}
     </DataContext.Provider>
   );
 }
