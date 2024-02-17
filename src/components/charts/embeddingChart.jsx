@@ -68,6 +68,39 @@ const EmbeddingChart = ({ embeddingData }) => {
       .nice();
     chartArea.append("g").attr("class", "yAxis");
 
+    // Brush 기능 설정
+    const brush = d3
+      .brush()
+      .extent([
+        [0, 0],
+        [width, height],
+      ])
+      .on("end", brushEnd);
+
+    const brushElement = chartArea.call(brush);
+
+    function brushEnd(e) {
+      if (!e.selection) return; // 선택 영역이 없으면 종료
+      const [[x0, y0], [x1, y1]] = e.selection;
+
+      // 선택된 점들의 데이터를 저장할 배열
+      const selectedPaper = [];
+
+      // 선택된 영역 내의 점들을 식별
+      scatters.each(function (d) {
+        const cx = x(d.vector_x),
+          cy = y(d.vector_y);
+        if (x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1) {
+          selectedPaper.push(d);
+        }
+      });
+      // 선택된 데이터의 정보 출력
+      console.log("Selected Paper:", selectedPaper);
+
+      // Brush 영역 초기화
+      brushElement.call(brush.clear);
+    }
+
     const tooltip = d3
       .select("body")
       .append("div")
