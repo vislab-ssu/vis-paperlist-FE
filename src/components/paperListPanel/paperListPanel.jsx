@@ -4,6 +4,10 @@ import "../../styles/paperListPanel.css";
 import PaperList from "./paperList";
 import PaperInformation from "./paperInformation";
 import ScrappedList from "./scrappedList";
+import FilteredPaperVisualizer from "./filteredPaperVisualizer";
+
+import { useContext } from "react";
+import { DataContext } from "../../Context";
 
 // 검색 결과 페이지
 function PaperListPanel({ searchResults, searchName, barChartSelectedList }) {
@@ -15,6 +19,8 @@ function PaperListPanel({ searchResults, searchName, barChartSelectedList }) {
   const [scrapList, setScrapList] = useState(() => {
     return JSON.parse(localStorage.getItem("scrap")) || [];
   });
+
+  const { filteredPaper, setFilteredPaper } = useContext(DataContext);
 
   // 모달 토글
   const toggleModal = (paper = null) => {
@@ -43,6 +49,9 @@ function PaperListPanel({ searchResults, searchName, barChartSelectedList }) {
   // // // // // // // // //
 
   const renderContent = () => {
+    if (filteredPaper.length) {
+      return <FilteredPaperVisualizer searchResults={searchResults} />;
+    }
     if (selectedPaper != null) {
       return (
         <PaperInformation
