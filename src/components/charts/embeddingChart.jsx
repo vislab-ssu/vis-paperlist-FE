@@ -1,8 +1,11 @@
 import * as d3 from "d3";
 import React, { useEffect, useRef } from "react";
 import { DBSCAN } from "density-clustering";
+import { useContext } from "react";
+import { DataContext } from "../../Context";
 
 const EmbeddingChart = ({ embeddingData }) => {
+  const { filteredPaper, setFilteredPaper } = useContext(DataContext);
   const svgRef = useRef();
 
   useEffect(() => {
@@ -80,7 +83,10 @@ const EmbeddingChart = ({ embeddingData }) => {
     const brushElement = chartArea.call(brush);
 
     function brushEnd(e) {
-      if (!e.selection) return; // 선택 영역이 없으면 종료
+      if (!e.selection) {
+        setFilteredPaper([]);
+        return;
+      } // 선택 영역이 없으면 종료
       const [[x0, y0], [x1, y1]] = e.selection;
 
       // 선택된 점들의 데이터를 저장할 배열
@@ -94,11 +100,11 @@ const EmbeddingChart = ({ embeddingData }) => {
           selectedPaper.push(d);
         }
       });
-      // 선택된 데이터의 정보 출력
-      console.log("Selected Paper:", selectedPaper);
+
+      setFilteredPaper(selectedPaper);
 
       // Brush 영역 초기화
-      brushElement.call(brush.clear);
+      // brushElement.call(brush.clear);
     }
 
     const tooltip = d3
