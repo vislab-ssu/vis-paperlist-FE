@@ -16,7 +16,7 @@ const EmbeddingChart = ({ embeddingData }) => {
     // DBSCAN 클러스터링 수행
     const dbscan = new DBSCAN();
     const vectors = embeddingData.map((d) => [d.vector_x, d.vector_y]);
-    const clusters = dbscan.run(vectors, 0.2, 5);
+    const clusters = dbscan.run(vectors, 0.6, 3);
 
     // 클러스터 ID 할당
     const clusterIds = new Array(vectors.length).fill(-1);
