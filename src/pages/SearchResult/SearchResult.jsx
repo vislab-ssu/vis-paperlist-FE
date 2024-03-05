@@ -9,10 +9,12 @@ import axios from "axios";
 
 // import { useGetSearchResults } from "./hooks";
 import "../SearchResult/SearchResult.css";
+import PaperListPanel from "../../components/paperListPanel/paperListPanel";
 import YearsBarChart from "../../components/filters/yearsBarChart";
 import WordcloudChart from "../../components/charts/wordcloudChart";
 import CitationChart from "../../components/charts/citationChart";
-import PaperListPanel from "../../components/paperListPanel/paperListPanel";
+import EmbeddingChart from "../../components/charts/embeddingChart";
+import CheckBox from "../../components/filters/CheckBox";
 import logo from "../../assets/main-logo.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +23,6 @@ import {
   faFilter,
   faChartLine,
 } from "@fortawesome/free-solid-svg-icons";
-import EmbeddingChart from "../../components/charts/embeddingChart";
 
 // 검색 결과 페이지
 function SearchResult() {
@@ -93,6 +94,9 @@ function SearchResult() {
             <FontAwesomeIcon icon={faFilter} style={{ marginRight: "0.5em" }} />
             <span>Filters</span>
           </div>
+          <h4>Conference / Jornal Type</h4>
+          <CheckBox />
+          <h4>Years</h4>
           <YearsBarChart
             searchResults={searchResults}
             barChartSelectedList={barChartSelectedList}

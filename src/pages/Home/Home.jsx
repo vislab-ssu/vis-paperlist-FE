@@ -3,7 +3,6 @@ import "../Home/Home.css";
 import InputContainer from "./InputContainer";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/Vis_logo.png";
-import CheckBox from "./CheckBox";
 
 //메인 홈 페이지
 function Home() {
@@ -38,7 +37,6 @@ function Home() {
           goResult={goResult}
           activeEnter={activeEnter}
         />
-        <CheckBox />
       </div>
       <div className="home-footer-container">
         <p className="home-footer-text">ⓒ VisPaperlist. All rights reserved.</p>
