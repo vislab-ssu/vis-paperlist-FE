@@ -40,9 +40,9 @@ function paperInformation({ paper, searchName, onClose }) {
       <hr></hr>
 
       <div className="paper-container">
-        <h3 className="paper-title">
+        <h2 className="paper-title">
           {highlightMatch(paper.title, searchName)}
-        </h3>
+        </h2>
         <div className="paper-detail">
           {/* 논문 인용횟수 */}
           <FontAwesomeIcon
@@ -96,7 +96,7 @@ function paperInformation({ paper, searchName, onClose }) {
             ACM Digital Library
           </a>
         </div>
-        <p>{paper.abstract}</p>
+        <p style={{ fontSize: "1.3em" }}>{paper.abstract}</p>
         {console.log(paper.keywordList)}
       </div>
     </div>
