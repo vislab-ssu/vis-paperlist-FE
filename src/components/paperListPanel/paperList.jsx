@@ -107,8 +107,15 @@ function paperList({
               {/* 논문 세션 */}
               <FontAwesomeIcon icon={faBook} style={{ marginRight: "0.2em" }} />
               <span className="session" style={{ marginRight: "1em" }}>
-                {/* name-> session 으로 우선 설정*/}
-                {paper.name}
+                {/* 
+                  CHI, ETRA는 
+                  session이 있는 경우, name : session명 / joname : CHI 또는 ETRA
+                  session이 없는 경우, name : CHI 또는 ETRA / joname : null
+                  IEEE Pacific, IEEE TVCG는 name : IEEE ~~~~ / joname : null 
+                */}
+                {paper.joname == null
+                  ? paper.name
+                  : paper.joname + " (" + paper.name + ")"}
               </span>
 
               {/* 논문 연도 */}
