@@ -62,7 +62,7 @@ function paperList({
         <div className="scrapped-paper-list">
           <img
             src={scrappedList ? StarSolid : StarRegular}
-            style={{ cursor: "pointer" }}
+            style={{ width: "1.4em", height: "1.4em", cursor: "pointer" }}
             onClick={toggleBookMark}
           />
         </div>
@@ -151,7 +151,7 @@ function paperList({
                 href={paper.DOI}
                 target="_blank"
               >
-                ACM Digital Library
+                DOI Link
               </a>
               {/* <p className="abstract">{paper.abstract}</p> */}
             </div>
@@ -159,7 +159,7 @@ function paperList({
           <div className="paper-scrap">
             <img
               src={scrapList.includes(paper) ? StarSolid : StarRegular}
-              style={{ cursor: "pointer" }}
+              style={{ width: "1.6em", height: "1.6em", cursor: "pointer" }}
               onClick={() => {
                 toggleScrappedList(paper);
               }}

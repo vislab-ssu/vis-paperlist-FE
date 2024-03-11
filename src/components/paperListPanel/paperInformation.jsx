@@ -47,15 +47,24 @@ function paperInformation({ paper, searchName, onClose }) {
           {/* 논문 인용횟수 */}
           <FontAwesomeIcon
             icon={faQuoteRight}
-            style={{ marginRight: "0.2em" }}
+            style={{ fontSize: "16px", marginRight: "0.2em" }}
           />
-          <span className="citation-number" style={{ marginRight: "1em" }}>
+          <span
+            className="citation-number"
+            style={{ fontSize: "16px", marginRight: "0.5em" }}
+          >
             {paper.citation}
           </span>
 
           {/* 논문 세션 */}
-          <FontAwesomeIcon icon={faBook} style={{ marginRight: "0.2em" }} />
-          <span className="session" style={{ marginRight: "1em" }}>
+          <FontAwesomeIcon
+            icon={faBook}
+            style={{ fontSize: "16px", marginRight: "0.2em" }}
+          />
+          <span
+            className="session"
+            style={{ fontSize: "16px", marginRight: "0.5em" }}
+          >
             {/* 
               CHI, ETRA는 
               session이 있는 경우, name : session명 / joname : CHI 또는 ETRA
@@ -70,33 +79,49 @@ function paperInformation({ paper, searchName, onClose }) {
           {/* 논문 연도 */}
           <FontAwesomeIcon
             icon={faCalendarDays}
-            style={{ marginRight: "0.2em" }}
+            style={{ fontSize: "16px", marginRight: "0.2em" }}
           />
-          <span className="year" style={{ marginRight: "1em" }}>
+          <span
+            className="year"
+            style={{ fontSize: "16px", marginRight: "0.5em" }}
+          >
             {moment(paper.date).format("MMMM YYYY")}
           </span>
 
           {/* 논문 저자 */}
-          <FontAwesomeIcon icon={faUsers} style={{ marginRight: "0.2em" }} />
-          <span className="authors" style={{ marginRight: "1em" }}>
+          <FontAwesomeIcon
+            icon={faUsers}
+            style={{ fontSize: "16px", marginRight: "0.2em" }}
+          />
+          <span
+            className="authors"
+            style={{ fontSize: "16px", marginRight: "0.5em" }}
+          >
             {paper.author}
           </span>
 
           {/* 논문 DOI */}
           <FontAwesomeIcon
             icon={faUpRightFromSquare}
-            style={{ marginRight: "0.2em" }}
+            style={{ fontSize: "16px", marginRight: "0.2em" }}
           />
           <a
             className="DOI"
-            style={{ marginRight: "1em", cursor: "pointer", color: "#0071bc" }}
+            style={{
+              fontSize: "16px",
+              marginRight: "1em",
+              cursor: "pointer",
+              color: "#0071bc",
+            }}
             href={paper.DOI}
             target="_blank"
           >
-            ACM Digital Library
+            DOI Link
           </a>
         </div>
-        <p style={{ fontSize: "1.3em" }}>{paper.abstract}</p>
+        <p style={{ fontSize: "1.3em", lineHeight: "35px" }}>
+          {highlightMatch(paper.abstract, searchName)}
+        </p>
         {console.log(paper.keywordList)}
       </div>
     </div>

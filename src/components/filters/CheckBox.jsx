@@ -35,7 +35,12 @@ const CheckBox = ({ selectedItems, setSelectedItems, itemCounts }) => {
             name={item}
             checked={selectedItems.includes(item)}
             onChange={handleChange}
-            style={{ width: "1.2em", height: "1.2em", marginRight: "1em" }}
+            style={{
+              width: "1.2em",
+              height: "1.2em",
+              marginRight: "1em",
+              fontSize: "1em",
+            }}
           />
           {`${item} (${itemCounts[item] || 0})`}
         </label>

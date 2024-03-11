@@ -4,9 +4,7 @@
   grid-auto-flow: column;
   justify-content: space-between;
   align-items: center;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  margin-bottom: 0.3em;
+  margin: 0.3em 0.5em;
 }
 
 /* 검색 결과 아이템 스타일 */
@@ -14,12 +12,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 0.35em; /* 패딩을 늘려 높이 증가 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 부드러운 변화를 위한 트랜지션 추가 */
 }
 
 /* 검색 결과 아이템 hover 시 스타일 변경 */
 .search-result:hover {
-  transform: translateY(-3px);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); /* hover 시 더 부드럽게 이동 */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* hover 시 그림자 강조 */
 }
 
 .search-result:last-child {
@@ -37,11 +37,11 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  font-size: 12px;
+  font-size: 16px;
   text-align: center;
   padding: 5px;
-  min-width: 32px;
-  min-height: 32px;
+  min-width: 40px;
+  min-height: 40px;
   border-radius: 50px;
   border: 0;
   margin-right: 0.8em;
@@ -65,7 +65,8 @@
   /* color: #2b6cb0; */
   margin-top: 0;
   margin-bottom: 0.5em;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -81,7 +82,7 @@
 }
 
 .paper-detail {
-  font-size: 13px;
+  font-size: 15px;
   color: #8c9296;
 }
 
