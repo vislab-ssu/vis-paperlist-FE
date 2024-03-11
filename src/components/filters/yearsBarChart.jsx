@@ -185,12 +185,12 @@ const YearsBarChart = ({
   return (
     <>
       <svg ref={svgRef}></svg>
-      <p>selected List</p>
+      {/* <p>selected List</p>
       <ul>
         {barChartSelectedList.map((v) => (
           <li key={v}>{v}</li>
         ))}
-      </ul>
+      </ul> */}
     </>
   );
 };

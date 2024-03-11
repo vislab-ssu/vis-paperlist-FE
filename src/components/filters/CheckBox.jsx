@@ -28,7 +28,6 @@ const CheckBox = ({ selectedItems, setSelectedItems, itemCounts }) => {
         margin: "1em 0",
       }}
     >
-      {console.log(selectedItems)}
       {items.map((item) => (
         <label key={item}>
           <input
