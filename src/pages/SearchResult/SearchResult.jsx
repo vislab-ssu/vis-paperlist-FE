@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   useLocation,
   useNavigate,
@@ -35,10 +35,23 @@ function SearchResult() {
   const searchName = searchParams.get("searchName");
   const searchType = searchParams.get("searchType");
 
-  // wordcloudData
-  const [wordcloudData, setWordcloudData] = useState([]);
+  const goHome = () => {
+    navigate("/");
+  };
+
+  // checkboxFilter
+  const [selectedItems, setSelectedItems] = useState([
+    "CHI",
+    "ETRA",
+    "IEEE VIS",
+    "IEEE TVCG",
+    "IEEE Pacific",
+    // "IEEE:EUROVIS",
+  ]);
   // brush barChartSelectedList
   const [barChartSelectedList, setBarChartSelectedList] = useState([]);
+  // wordcloudData
+  const [wordcloudData, setWordcloudData] = useState([]);
   // embeddingData
   const [embeddingData, setEmbeddingData] = useState([]);
 
@@ -46,9 +59,27 @@ function SearchResult() {
   // const searchResults = useGetSearchResults(searchName, searchType);
   const [searchResults, setSearchResults] = useState([]);
 
-  const goHome = () => {
-    navigate("/");
-  };
+  const checkBoxFilteredResults = useMemo(() => {
+    return searchResults.filter((result) =>
+      result.joname == null
+        ? selectedItems.includes(result.name)
+        : selectedItems.includes(result.joname)
+    );
+  }, [searchResults, selectedItems]);
+
+  const itemCounts = useMemo(() => {
+    const counts = {};
+    selectedItems.forEach((item) => {
+      counts[item] = 0;
+    });
+    searchResults.forEach((result) => {
+      const item = result.joname || result.name;
+      if (counts.hasOwnProperty(item)) {
+        counts[item] += 1;
+      }
+    });
+    return counts;
+  }, [searchResults, selectedItems]);
 
   useEffect(() => {
     async function getPaper() {
@@ -95,10 +126,14 @@ function SearchResult() {
             <span>Filters</span>
           </div>
           <h4>Conference / Jornal Type</h4>
-          <CheckBox />
+          <CheckBox
+            selectedItems={selectedItems}
+            setSelectedItems={setSelectedItems}
+            itemCounts={itemCounts}
+          />
           <h4>Years</h4>
           <YearsBarChart
-            searchResults={searchResults}
+            searchResults={checkBoxFilteredResults}
             barChartSelectedList={barChartSelectedList}
             setBarChartSelectedList={setBarChartSelectedList}
           />
@@ -118,7 +153,7 @@ function SearchResult() {
           </div>
           <div className="panel-section">
             <div className="panel-header-2">left-2</div>
-            <CitationChart searchResults={searchResults} />
+            <CitationChart searchResults={checkBoxFilteredResults} />
           </div>
         </div>
 
@@ -128,7 +163,7 @@ function SearchResult() {
             <span>Papers</span>
           </div>
           <PaperListPanel
-            searchResults={searchResults}
+            searchResults={checkBoxFilteredResults}
             searchName={searchName}
             barChartSelectedList={barChartSelectedList}
           />

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-const CheckBox = () => {
-  const [selectedItems, setSelectedItems] = useState([]);
-
+const CheckBox = ({ selectedItems, setSelectedItems, itemCounts }) => {
   const handleChange = (event) => {
     const { name, checked } = event.target;
     if (checked && !selectedItems.includes(name)) {
@@ -12,7 +10,14 @@ const CheckBox = () => {
     }
   };
 
-  const items = ["CHI", "ETRA", "IEEE:TVCG", "IEEE:PACIFICVIS", "IEEE:EUROVIS"];
+  const items = [
+    "CHI",
+    "ETRA",
+    "IEEE VIS",
+    "IEEE TVCG",
+    "IEEE Pacific",
+    // "IEEE:EUROVIS",
+  ];
 
   return (
     <div
@@ -23,6 +28,7 @@ const CheckBox = () => {
         margin: "1em 0",
       }}
     >
+      {console.log(selectedItems)}
       {items.map((item) => (
         <label key={item}>
           <input
@@ -30,8 +36,9 @@ const CheckBox = () => {
             name={item}
             checked={selectedItems.includes(item)}
             onChange={handleChange}
+            style={{ width: "1.2em", height: "1.2em", marginRight: "1em" }}
           />
-          {item + " (10)"}
+          {`${item} (${itemCounts[item] || 0})`}
         </label>
       ))}
     </div>
