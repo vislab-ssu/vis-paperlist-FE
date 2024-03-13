@@ -23,10 +23,12 @@ import {
   faFilter,
   faChartLine,
 } from "@fortawesome/free-solid-svg-icons";
+import Loading from "./loading";
 
 // 검색 결과 페이지
 function SearchResult() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   // 검색어, 검색조건
   // const location = useLocation();
@@ -96,10 +98,12 @@ function SearchResult() {
           setSearchResults(papers);
           setWordcloudData(myWords);
           setEmbeddingData(embeddingData);
+          setIsLoading(false);
           return res;
         })
         .catch((err) => {
           console.log(err);
+          setIsLoading(false);
           return err;
         });
     }
@@ -119,56 +123,63 @@ function SearchResult() {
 
       <hr></hr>
 
-      <div className="result-container">
-        <div className="left-panel-filter">
-          <div className="panel-header-filter">
-            <FontAwesomeIcon icon={faFilter} style={{ marginRight: "0.5em" }} />
-            <span>Filters</span>
-          </div>
-          <h4>Conference / Jornal Type</h4>
-          <CheckBox
-            selectedItems={selectedItems}
-            setSelectedItems={setSelectedItems}
-            itemCounts={itemCounts}
-          />
-          <h4>Years</h4>
-          <YearsBarChart
-            searchResults={checkBoxFilteredResults}
-            barChartSelectedList={barChartSelectedList}
-            setBarChartSelectedList={setBarChartSelectedList}
-          />
-          <WordcloudChart wordcloudData={wordcloudData} />
-        </div>
-
-        <div className="left-panel-2">
-          <div className="panel-section">
-            <div className="panel-header-2">
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="result-container">
+          <div className="left-panel-filter">
+            <div className="panel-header-filter">
               <FontAwesomeIcon
-                icon={faChartLine}
+                icon={faFilter}
                 style={{ marginRight: "0.5em" }}
               />
-              <span>charts</span>
+              <span>Filters</span>
             </div>
-            <EmbeddingChart embeddingData={embeddingData} />
+            <h4>Conference / Jornal Type</h4>
+            <CheckBox
+              selectedItems={selectedItems}
+              setSelectedItems={setSelectedItems}
+              itemCounts={itemCounts}
+            />
+            <h4>Years</h4>
+            <YearsBarChart
+              searchResults={checkBoxFilteredResults}
+              barChartSelectedList={barChartSelectedList}
+              setBarChartSelectedList={setBarChartSelectedList}
+            />
+            <WordcloudChart wordcloudData={wordcloudData} />
           </div>
-          <div className="panel-section">
-            <div className="panel-header-2">left-2</div>
-            <CitationChart searchResults={checkBoxFilteredResults} />
-          </div>
-        </div>
 
-        <div className="right-panel">
-          <div className="panel-header-paperList">
-            <FontAwesomeIcon icon={faList} style={{ marginRight: "0.5em" }} />
-            <span>Papers</span>
+          <div className="left-panel-2">
+            <div className="panel-section">
+              <div className="panel-header-2">
+                <FontAwesomeIcon
+                  icon={faChartLine}
+                  style={{ marginRight: "0.5em" }}
+                />
+                <span>charts</span>
+              </div>
+              <EmbeddingChart embeddingData={embeddingData} />
+            </div>
+            <div className="panel-section">
+              <div className="panel-header-2">left-2</div>
+              <CitationChart searchResults={checkBoxFilteredResults} />
+            </div>
           </div>
-          <PaperListPanel
-            searchResults={checkBoxFilteredResults}
-            searchName={searchName}
-            barChartSelectedList={barChartSelectedList}
-          />
+
+          <div className="right-panel">
+            <div className="panel-header-paperList">
+              <FontAwesomeIcon icon={faList} style={{ marginRight: "0.5em" }} />
+              <span>Papers</span>
+            </div>
+            <PaperListPanel
+              searchResults={checkBoxFilteredResults}
+              searchName={searchName}
+              barChartSelectedList={barChartSelectedList}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="footer-container">
         <p className="footer-text">ⓒ VisPaperlist. All rights reserved.</p>
