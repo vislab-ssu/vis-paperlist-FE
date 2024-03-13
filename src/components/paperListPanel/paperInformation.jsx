@@ -33,14 +33,17 @@ function paperInformation({ paper, searchName, onClose }) {
     <div className="paper-information">
       <div className="header-tool-container">
         <div className="back-to-list" onClick={onClose}>
-          <FontAwesomeIcon icon={faArrowLeft} />
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            style={{ width: "1.3em", height: "1.3em" }}
+          />
         </div>
       </div>
 
       <hr></hr>
 
       <div className="paper-container">
-        <h2 className="paper-title">
+        <h2 className="paper-title" style={{ fontSize: "25px" }}>
           {highlightMatch(paper.title, searchName)}
         </h2>
         <div className="paper-detail">
@@ -113,7 +116,9 @@ function paperInformation({ paper, searchName, onClose }) {
               cursor: "pointer",
               color: "#0071bc",
             }}
-            href={paper.DOI}
+            href={
+              paper.joname == null ? `https://doi.org/${paper.DOI}` : paper.DOI
+            }
             target="_blank"
           >
             DOI Link

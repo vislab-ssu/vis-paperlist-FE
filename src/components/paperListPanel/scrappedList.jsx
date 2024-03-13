@@ -108,7 +108,11 @@ function scrappedPaper({
                   cursor: "pointer",
                   color: "#0071bc",
                 }}
-                href={paper.DOI}
+                href={
+                  paper.joname == null
+                    ? `https://doi.org/${paper.DOI}`
+                    : paper.DOI
+                }
                 target="_blank"
               >
                 DOI Link
