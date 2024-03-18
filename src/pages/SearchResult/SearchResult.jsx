@@ -124,7 +124,11 @@ function SearchResult() {
       <hr></hr>
 
       {isLoading ? (
-        <Loading />
+        <div 
+          style={{height: "87vh", backgroundColor: "white"}}>
+          <Loading />
+        </div>
+        
       ) : (
         <div className="result-container">
           <div className="left-panel-filter">

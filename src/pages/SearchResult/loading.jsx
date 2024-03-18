@@ -16,11 +16,12 @@ const Loading = () => {
   // };
 
   return (
-    <div>
+    <div
+      style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+    >
       <Lottie
         // options={defaultOptions}
-        width={300}
-        height={300}
+        style={{width: 500, height: 500, background: "transparent"}}
         animationData={loadingAnimation}
       ></Lottie>
     </div>
