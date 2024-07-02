@@ -38,6 +38,18 @@ function Home() {
           activeEnter={activeEnter}
         />
       </div>
+      <div>
+        <p>
+          {`try : `}
+          <a
+            className="usage"
+            href="http://localhost:5173/searchResult?searchName=uncertainty&searchType=abstract"
+            style={{ color: "#237aaa" }}
+          >
+            uncertainty
+          </a>
+        </p>
+      </div>
       <div className="home-footer-container">
         <p className="home-footer-text">ⓒ VisPaperlist. All rights reserved.</p>
       </div>
