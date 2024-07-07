@@ -42,7 +42,7 @@
   width: 993px;
   height: 121px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 10%;
@@ -57,9 +57,11 @@
   line-height: 26px;
 }
 
-.logo {
-  width: 100px;
-  height: 25px;
+.description {
+  font-size: 15px;
+  color: #555;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .home-footer-container {
@@ -67,10 +69,20 @@
   bottom: 0;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 
 .home-footer-text {
   color: #656565;
+}
+
+.logo {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 120px;
+  height: 30px;
+  margin-bottom: 5px;
 }

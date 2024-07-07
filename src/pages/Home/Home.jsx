@@ -24,9 +24,6 @@ function Home() {
     <div className="search-app">
       <div className="title-container">
         <p className="title-text">Paperlist</p>
-        <div className="logo-container">
-          <img src={logo} alt="image" className="logo" />
-        </div>
       </div>
       <div className="Home-search-container">
         <InputContainer
@@ -38,7 +35,19 @@ function Home() {
           activeEnter={activeEnter}
         />
       </div>
-      <div>
+      <div
+        className="description"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "20px",
+        }}
+      >
+        <div>
+          Total [<strong>10,574</strong>] papers.{" "}
+        </div>
         <p>
           {`try : `}
           <a
@@ -50,9 +59,12 @@ function Home() {
           </a>
         </p>
       </div>
+
       <div className="home-footer-container">
         <p className="home-footer-text">ⓒ VisPaperlist. All rights reserved.</p>
       </div>
+
+      <img src={logo} alt="image" className="logo" />
     </div>
   );
 }
